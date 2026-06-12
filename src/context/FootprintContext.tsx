@@ -34,8 +34,8 @@ const getInitialData = (): FootprintData => {
     if (saved) {
       return JSON.parse(saved);
     }
-  } catch (e) {
-    console.error('Failed to load from local storage', e);
+  } catch (e: unknown) {
+    console.error('Failed to load from local storage', e instanceof Error ? e.message : String(e));
   }
   return defaultData;
 };
@@ -75,8 +75,8 @@ export const FootprintProvider = ({ children }: { children: ReactNode }) => {
       const updated = { ...prev, ...newData };
       try {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
-      } catch (e) {
-        console.error('Failed to save to local storage', e);
+      } catch (e: unknown) {
+        console.error('Failed to save to local storage', e instanceof Error ? e.message : String(e));
       }
       return updated;
     });

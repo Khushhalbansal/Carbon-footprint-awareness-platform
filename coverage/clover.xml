@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1781259321522" clover="3.2.0">
-  <project timestamp="1781259321522" name="All files">
-    <metrics statements="137" coveredstatements="129" conditionals="42" coveredconditionals="29" methods="51" coveredmethods="43" elements="230" coveredelements="201" complexity="0" loc="137" ncloc="137" packages="3" files="11" classes="11"/>
+<coverage generated="1781263265353" clover="3.2.0">
+  <project timestamp="1781263265353" name="All files">
+    <metrics statements="137" coveredstatements="129" conditionals="46" coveredconditionals="29" methods="51" coveredmethods="43" elements="234" coveredelements="201" complexity="0" loc="137" ncloc="137" packages="3" files="11" classes="11"/>
     <package name="components">
       <metrics statements="63" coveredstatements="61" conditionals="30" coveredconditionals="21" methods="26" coveredmethods="20"/>
       <file name="CookieConsent.tsx" path="C:\Users\khush\OneDrive\Desktop\carbon footprint\src\components\CookieConsent.tsx">
@@ -81,9 +81,9 @@
       </file>
     </package>
     <package name="context">
-      <metrics statements="46" coveredstatements="42" conditionals="8" coveredconditionals="6" methods="13" coveredmethods="13"/>
+      <metrics statements="46" coveredstatements="42" conditionals="12" coveredconditionals="6" methods="13" coveredmethods="13"/>
       <file name="FootprintContext.tsx" path="C:\Users\khush\OneDrive\Desktop\carbon footprint\src\context\FootprintContext.tsx">
-        <metrics statements="33" coveredstatements="30" conditionals="4" coveredconditionals="3" methods="8" coveredmethods="8"/>
+        <metrics statements="33" coveredstatements="30" conditionals="8" coveredconditionals="3" methods="8" coveredmethods="8"/>
         <line num="23" count="3" type="stmt"/>
         <line num="29" count="3" type="stmt"/>
         <line num="31" count="3" type="stmt"/>
@@ -91,7 +91,7 @@
         <line num="33" count="7" type="stmt"/>
         <line num="34" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="2" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="40" count="5" type="stmt"/>
         <line num="44" count="3" type="stmt"/>
         <line num="46" count="11" type="stmt"/>
@@ -107,7 +107,7 @@
         <line num="75" count="4" type="stmt"/>
         <line num="76" count="4" type="stmt"/>
         <line num="77" count="4" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="81" count="4" type="stmt"/>
         <line num="85" count="11" type="stmt"/>
         <line num="87" count="11" type="stmt"/>
