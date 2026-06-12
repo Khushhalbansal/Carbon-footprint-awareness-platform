@@ -12,7 +12,13 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-// Analytics relies on window object, ensuring it's safely initialized
-export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
+
+let analyticsInstance: ReturnType<typeof getAnalytics> | null = null;
+
+export const initializeAnalytics = () => {
+  if (typeof window !== 'undefined' && !analyticsInstance) {
+    analyticsInstance = getAnalytics(app);
+  }
+  return analyticsInstance;
+};

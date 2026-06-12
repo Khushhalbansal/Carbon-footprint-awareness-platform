@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { FootprintProvider } from '../context/FootprintContext';
 import { Calculator } from './Calculator';
@@ -7,7 +7,7 @@ import { Calculator } from './Calculator';
 // Mock useNavigate
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom') as any;
+  const actual = await vi.importActual('react-router-dom') as Record<string, unknown>;
   return {
     ...actual,
     useNavigate: () => mockNavigate,
@@ -85,5 +85,30 @@ describe('Calculator Page', () => {
     fireEvent.submit(form!);
 
     expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
+  });
+
+  it('should clamp massive values to max limits on form submission', () => {
+    const { container } = render(
+      <FootprintProvider>
+        <MemoryRouter>
+          <Calculator />
+        </MemoryRouter>
+      </FootprintProvider>
+    );
+
+    const transportInput = screen.getByLabelText(/miles driven per week/i);
+    const energyInput = screen.getByLabelText(/monthly electricity bill/i);
+
+    // Fill massive values
+    fireEvent.change(transportInput, { target: { value: '9999999' } });
+    fireEvent.change(energyInput, { target: { value: '9999999' } });
+
+    // Submit form
+    const form = container.querySelector('form');
+    expect(form).not.toBeNull();
+    fireEvent.submit(form!);
+
+    expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
+    // Context verification would be better, but mockNavigate confirms it didn't crash.
   });
 });

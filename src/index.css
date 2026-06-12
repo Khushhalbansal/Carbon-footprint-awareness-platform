@@ -265,6 +265,31 @@ input::placeholder, textarea::placeholder {
   .md\:flex-row { flex-direction: row; }
 }
 
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-links.open {
+    display: flex;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .menu-toggle {
+    display: flex !important;
+  }
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
@@ -295,4 +320,28 @@ input::placeholder, textarea::placeholder {
 
 .nav-link:hover, .nav-link.active {
   color: var(--accent-primary);
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-primary);
+  color: white;
+  padding: 8px;
+  z-index: 200;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

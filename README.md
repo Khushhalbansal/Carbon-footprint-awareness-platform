@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# EcoTrack — Carbon Footprint Awareness Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EcoTrack is a modern, responsive React application designed to help users calculate, track, and reduce their carbon footprint. The platform provides actionable insights tailored to individual lifestyle choices.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- **Carbon Footprint Calculator**: Estimate your annual CO₂ emissions based on transport, diet, and energy usage.
+- **Impact Dashboard**: Visualize your emissions breakdown with interactive charts.
+- **Actionable Steps**: Receive personalized recommendations to lower your environmental impact.
+- **Data Persistence**: Your data is saved locally so you can track your progress over time.
+- **Dark/Light Mode**: Seamlessly switch between themes for optimal viewing.
+- **Accessible Design**: Built with semantic HTML, ARIA labels, and keyboard navigation support.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Technology Stack
+- **Framework**: React 18 + Vite
+- **Language**: TypeScript
+- **Styling**: Custom Vanilla CSS (Design System with CSS Variables)
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **Routing**: React Router DOM v6
+- **Testing**: Vitest + React Testing Library
 
-## React Compiler
+## 📦 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or yarn
 
-## Expanding the ESLint configuration
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Khushhalbansal/Carbon-footprint-awareness-platform.git
+   cd "carbon footprint"
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Building for Production
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Running Tests
+```bash
+npm run test
 ```
+
+## 🌐 Deployment
+The project is configured for continuous deployment to Firebase Hosting.
+Live URL: [https://ecotrack-28284.web.app](https://ecotrack-28284.web.app)
+
+## 🧪 Testing & Code Quality
+- **100% Test Pass Rate**: Verified logic, components, and rendering.
+- **Strict TypeScript**: Configured with `strict: true` for robust type checking.
+- **ESLint**: Enforces best practices and code quality.

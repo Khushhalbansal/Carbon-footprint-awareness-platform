@@ -12,9 +12,9 @@ export const Calculator = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Sanitize transport and energy to ensure they are valid, non-negative numbers
-    const transportVal = Math.max(0, Number(localData.transport) || 0);
-    const energyVal = Math.max(0, Number(localData.energy) || 0);
+    // Sanitize transport and energy to ensure they are valid, non-negative numbers within bounds
+    const transportVal = Math.min(5000, Math.max(0, Number(localData.transport) || 0));
+    const energyVal = Math.min(2000, Math.max(0, Number(localData.energy) || 0));
     
     updateData({
       ...localData,
@@ -27,7 +27,7 @@ export const Calculator = () => {
   return (
     <div className="container main-content animate-fade-in">
       <div className="glass-panel" style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h2 className="text-center mb-8">Footprint Calculator</h2>
+        <h1 className="text-center mb-8">Footprint Calculator</h1>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -36,6 +36,8 @@ export const Calculator = () => {
               type="number" 
               id="transport" 
               min="0"
+              max="5000"
+              step="any"
               value={localData.transport}
               onChange={(e) => setLocalData({ ...localData, transport: Number(e.target.value) })}
               required
@@ -62,6 +64,8 @@ export const Calculator = () => {
               type="number" 
               id="energy" 
               min="0"
+              max="2000"
+              step="any"
               value={localData.energy}
               onChange={(e) => setLocalData({ ...localData, energy: Number(e.target.value) })}
               required

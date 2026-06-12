@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useMemo, useCallback } from 'react';
 import type { ReactNode } from 'react';
 
 export interface FootprintData {
@@ -24,6 +24,20 @@ const defaultData: FootprintData = {
   transport: 100,
   diet: 'omnivore',
   energy: 100,
+};
+
+const LOCAL_STORAGE_KEY = 'ecotrack_footprint_data';
+
+const getInitialData = (): FootprintData => {
+  try {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch (e) {
+    console.error('Failed to load from local storage', e);
+  }
+  return defaultData;
 };
 
 // Very basic calculation formulas for demonstration
@@ -54,16 +68,26 @@ const calculateEmissions = (data: FootprintData): Emissions => {
 const FootprintContext = createContext<FootprintContextType | undefined>(undefined);
 
 export const FootprintProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<FootprintData>(defaultData);
+  const [data, setData] = useState<FootprintData>(getInitialData);
 
-  const updateData = (newData: Partial<FootprintData>) => {
-    setData((prev: FootprintData) => ({ ...prev, ...newData }));
-  };
+  const updateData = useCallback((newData: Partial<FootprintData>) => {
+    setData((prev: FootprintData) => {
+      const updated = { ...prev, ...newData };
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+      } catch (e) {
+        console.error('Failed to save to local storage', e);
+      }
+      return updated;
+    });
+  }, []);
 
-  const emissions = calculateEmissions(data);
+  const emissions = useMemo(() => calculateEmissions(data), [data]);
+
+  const value = useMemo(() => ({ data, emissions, updateData }), [data, emissions, updateData]);
 
   return (
-    <FootprintContext.Provider value={{ data, emissions, updateData }}>
+    <FootprintContext.Provider value={value}>
       {children}
     </FootprintContext.Provider>
   );
