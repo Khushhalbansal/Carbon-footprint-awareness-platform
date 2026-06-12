@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFootprint } from '../context/FootprintContext';
+import type { FootprintData } from '../context/FootprintContext';
 
 export const Calculator = () => {
   const { data, updateData } = useFootprint();
@@ -10,7 +11,16 @@ export const Calculator = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateData(localData);
+    
+    // Sanitize transport and energy to ensure they are valid, non-negative numbers
+    const transportVal = Math.max(0, Number(localData.transport) || 0);
+    const energyVal = Math.max(0, Number(localData.energy) || 0);
+    
+    updateData({
+      ...localData,
+      transport: transportVal,
+      energy: energyVal,
+    });
     navigate('/dashboard');
   };
 
@@ -37,7 +47,7 @@ export const Calculator = () => {
             <select 
               id="diet" 
               value={localData.diet}
-              onChange={(e) => setLocalData({ ...localData, diet: e.target.value as any })}
+              onChange={(e) => setLocalData({ ...localData, diet: e.target.value as FootprintData['diet'] })}
             >
               <option value="vegan">Vegan</option>
               <option value="vegetarian">Vegetarian</option>

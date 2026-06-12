@@ -69,6 +69,7 @@ export const FootprintProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFootprint = () => {
   const context = useContext(FootprintContext);
   if (context === undefined) {

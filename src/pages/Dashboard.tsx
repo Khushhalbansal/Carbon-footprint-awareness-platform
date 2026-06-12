@@ -37,7 +37,8 @@ export const Dashboard = () => {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip formatter={(value: any) => formatValue(value)} />
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              <Tooltip formatter={(value: any) => formatValue(Number(value))} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
